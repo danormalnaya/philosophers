@@ -6,7 +6,7 @@
 /*   By: lloko <lloko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:24:34 by lloko             #+#    #+#             */
-/*   Updated: 2022/06/04 20:00:06 by lloko            ###   ########.fr       */
+/*   Updated: 2022/06/23 14:02:27 by lloko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,5 @@ int	check_arg(int argc, char **argv, t_data *data)
 			ft_error(1);
 		i++;
 	}
-	data->init.num_philo = ft_atoi(argv[1]);
-	data->init.t_die = ft_atoi(argv[2]);
-	data->init.t_eat = ft_atoi(argv[3]);
-	data->init.t_sleep = ft_atoi(argv[4]);
-	data->init.eat_raz = -1;
-	if (argc == 6)
-	{
-		data->init.eat_raz = ft_atoi(argv[5]);
-		if (data->init.eat_raz <= 0)
-			ft_error(1);
-	}
-	data->init.t_start = gettime();
 	return (0);
 }

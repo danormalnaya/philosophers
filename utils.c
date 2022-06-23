@@ -6,7 +6,7 @@
 /*   By: lloko <lloko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 19:26:11 by lloko             #+#    #+#             */
-/*   Updated: 2022/06/04 19:35:17 by lloko            ###   ########.fr       */
+/*   Updated: 2022/06/23 21:58:35 by lloko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,22 @@ int	ft_error(int i)
 	if (i == 2)
 		printf("Wrong numbers of arguments: use number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]"\n);
 	return (0);
+}
+
+long	get_time(void)
+{
+	t_time	check_time;
+
+	gettimeofday(&check_time, NULL);
+	return ((check_time.tv_sec * 1000) + (check_time.tv_usec / 1000));
+}
+
+void	my_usleep(long long ms)
+{
+	long long	t;
+	
+	t = 0;
+	t = get_time();
+	while ((get_time() - t) < ms)
+		usleep(ms / 10);
 }
