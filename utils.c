@@ -6,7 +6,7 @@
 /*   By: lloko <lloko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 19:26:11 by lloko             #+#    #+#             */
-/*   Updated: 2022/06/23 21:58:35 by lloko            ###   ########.fr       */
+/*   Updated: 2022/06/26 13:35:52 by lloko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_error(int i)
 		printf("Wrong arguments: you should use positive integers\n");
 	if (i == 2)
 		printf("Wrong numbers of arguments: use number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]"\n);
+	if (i == 3)
+		printf("The tread is not create\n");
 	return (0);
 }
 

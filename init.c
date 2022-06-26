@@ -6,7 +6,7 @@
 /*   By: lloko <lloko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:51:42 by lloko             #+#    #+#             */
-/*   Updated: 2022/06/23 21:58:42 by lloko            ###   ########.fr       */
+/*   Updated: 2022/06/26 15:21:28 by lloko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_data	*init_data(char **argv)
 {
 	t_data	*data;
-	
+
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (NULL);
@@ -59,4 +59,41 @@ t_philo	*init_philo(int i, t_data *data)
 	}
 	pthread_mutex_init(&data->philo.print, NULL);
 	return (philo);
+}
+
+void	*init_treads(t_data *data)
+{
+	t_philo	*philo;
+	int		i;
+
+	i = -1;
+	data->philo = malloc(sizeof(t_philo) * data->num_philo);
+	data->t_start = get_time();
+	while (++i < data->num_philo)
+	{
+		philo = init_philo(i, data);
+		data->phi[i] = philo;
+		if (pthreat_creat(data->philo[i]->phi, NULL, philos, (void *) philo))
+			return (ft_error(3));
+	}
+	i = -1;
+	while (++i < data->num_philo)
+		pthread_detach(data->philo[i]->phi);
+}
+
+pthread_mutex_t	*init_forks(int count)
+{
+	pthread_mutex_t	*forks;
+	int				i;
+
+	forks = malloc(sizeof(pthread_mutex_t) * count);
+	if (!forks)
+		return (NULL);
+	i = 0;
+	while (i < count)
+	{
+		pthread_mutex_init(&forks[i], NULL);
+		i++;
+	}
+	return (forks);
 }

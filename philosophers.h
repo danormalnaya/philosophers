@@ -6,7 +6,7 @@
 /*   By: lloko <lloko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 15:03:12 by lloko             #+#    #+#             */
-/*   Updated: 2022/06/23 21:59:26 by lloko            ###   ########.fr       */
+/*   Updated: 2022/06/26 14:55:19 by lloko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_data
 	int				num_philo;
 	int				eat_raz;
 	t_philo			**philo;
+	pthread_mutex_t	print;
+	pthread_mutex_t	*forks;
 }				t_data;
 
 typedef struct timeval
@@ -46,11 +48,9 @@ typedef struct s_philo
 	unsigned long	lasteat;
 	pthread_t		phi;
 	pthread_mutex_t	mute;
-	pthread_mutex_t	print;
-	pthread_mutex_t	*forks;
 	t_data			*data;
 	t_time			check_time;
-}				t_philo
+}				t_philo;
 
 int		ft_error(int i);
 long	get_time(void);
